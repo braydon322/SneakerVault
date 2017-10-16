@@ -1,22 +1,23 @@
-class ShoeController < Sinatra::Base
-  get '/tweets' do
+class ShoeController < ApplicationController
+  get '/shoes' do
+    erb :'/shoes/shoes'
   end
 
-  get '/tweets/new' do
+  get '/shoes/new' do
   end
 
-  post '/tweets/new' do
+  post '/shoes/new' do
   end
 
-  get '/tweets/:id' do
+  get '/shoes/:id' do
   end
 
-  get '/tweets/:id/edit' do
+  get '/shoes/:id/edit' do
   end
 
-  patch '/tweets/:id' do
+  patch '/shoes/:id' do
   end
 
-  delete '/tweets/:id/delete' do
+  delete '/shoes/:id/delete' do
   end
 end
