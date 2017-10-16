@@ -1,7 +1,14 @@
 require './config/environment'
 require 'pry'
+require 'omniauth-twitter'
+
+use OmniAuth::Builder do
+provider :twitter, '1OwSoXpZkgSdKfMC1o4SWAPq5', '	Nf5o4mzvxnXjCzhoKjQ9lpG4TlX00v9t25mp5qsRW2KaZZECKh'
+end
+
 
 class ApplicationController < Sinatra::Base
+
 
   configure do
    set :public_folder, 'public'
