@@ -1,11 +1,14 @@
-class UserController < Sinatra::Base
+class UserController < ApplicationController
+
   get '/signup' do
+    erb :'/users/sign_up'
   end
 
   post '/signup' do
   end
 
   get '/login' do
+    erb :'/users/log_in'
   end
 
   post '/login' do
@@ -16,4 +19,5 @@ class UserController < Sinatra::Base
 
   get '/users/:slug' do
   end
+
 end
