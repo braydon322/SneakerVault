@@ -1,9 +1,61 @@
 <html>
   <head>
     <style>
+      #main_content {
+        background-image: url('img/yeezy.JPG') ;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        transform: translate(0px, 0px, 0px);
+        background-image: url('img/yeezy.JPG') -webkit-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+        background-image: url('img/yeezy.JPG') -moz-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+        background-image: url('img/yeezy.JPG') -o-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+        background-image: url('img/yeezy.JPG') linear-gradient(to top right, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
+        height: 100vh;
+      }
+
+      @font-face {
+      font-family: 'Bebas Neue';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Bebas Neue'), url('BebasNeue.woff') format('woff')
+      }
+
+      #text-overlay {
+        background-color: rgba(43, 40, 50, 0.9);
+        padding-top: 40vh;
+        color: white;
+        text-align: center;
+        height: 100vh;
+      }
+
+      h2 {
+        font-family: helvetica;
+        letter-spacing:4px;
+        font-size: 1em;
+      }
+
+      #search-form {
+        display: inline-block;
+        margin: 0 auto;
+      }
+
     </style>
   </head>
   <body>
-    <!-- <h1>SNEAKER VAULT</h1> -->
+    <div id = "main_content">
+      <div id ="text-overlay">
+        <h2>YOUR PERSONAL SNEAKER VAULT</h2>
+        <h1 style="font-family:'Bebas Neue';font-weight:normal;font-size:5em">KEEP TRACK OF THE SNEAKERS YOU LOVE</h1>
+          <div id = "search-form">
+            <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+      </div>
+    </div>
+
   </body>
 </html
