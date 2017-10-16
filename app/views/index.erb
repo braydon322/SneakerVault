@@ -41,19 +41,53 @@
         margin: 0 auto;
       }
 
+      .btn-2 {
+          letter-spacing: 0;
+      }
+
+      .btn-2:hover,
+      .btn-2:active {
+        letter-spacing: 5px;
+      }
+
+      .btn-2:after,
+      .btn-2:before {
+        backface-visibility: hidden;
+        border: 1px solid rgba(#fff, 0);
+        bottom: 0px;
+        content: " ";
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        transition: all 280ms ease-in-out;
+        width: 0;
+      }
+
+      .btn-2:hover:after,
+      .btn-2:hover:before {
+        backface-visibility: hidden;
+        border-color: #fff;
+        transition: width 350ms ease-in-out;
+        width: 70%;
+      }
+
+      .btn-2:hover:before {
+        bottom: auto;
+        top: 0;
+        width: 70%;
+      }
+
     </style>
   </head>
   <body>
+
+</div>
     <div id = "main_content">
       <div id ="text-overlay">
         <h2>YOUR PERSONAL SNEAKER VAULT</h2>
         <h1 style="font-family:'Bebas Neue';font-weight:normal;font-size:5em">KEEP TRACK OF THE SNEAKERS YOU LOVE</h1>
-          <div id = "search-form">
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
+            <a href="/signup" class="button btn btn-primary btn-primary-outline btn-pill">Sign Up</a>
+            <a href="/login" class="button btn btn-primary btn-primary-outline btn-pill">Log In</a>
       </div>
     </div>
 
