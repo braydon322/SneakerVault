@@ -9,7 +9,6 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-
     if params[:username] != "" && params[:password] != ""
      @new_user = User.new(:username => params[:username], :password => params[:password])
      @new_user.save
@@ -21,7 +20,11 @@ class UserController < ApplicationController
   end
 
   get '/login' do
-    erb :'/users/log_in'
+    if logged_in?
+      redirect to '/shoes'
+    else
+      erb :'/users/log_in'
+    end
   end
 
   post '/login' do

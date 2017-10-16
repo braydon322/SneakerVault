@@ -142,6 +142,12 @@ hr {
 	padding-top:15px;
 }
 
+#submit {
+  float: right;
+  margin-top: 10px;
+  width: 100%;
+}
+
 #sidebar, #sidebar a, #sidebar-footer a {
     color:#ffffff;
     background-color:transparent;
@@ -355,7 +361,7 @@ small.text-muted {
                         <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
                       </li>
                       <li>
-                        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+                        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Add Pair</a>
                       </li>
                       <li>
                         <a href="#"><span class="badge">badge</span></a>
@@ -390,19 +396,19 @@ small.text-muted {
                                 <div class="panel-thumbnail"><img src="/assets/example/bg_5.jpg" class="img-responsive"></div>
                                 <div class="panel-body">
                                   <p class="lead">Braydon Whitmarsh</p>
-                                  <p>45 Followers, 26 Pairs</p>
+                                  <p>45 Followers, <%= current_user.shoes.size %> pair(s)</p>
                                   <img src="img/profile.jpg" width="28px">
                                 </div>
                               </div>
 
 
                               <div class="panel panel-default">
-                                <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
+                                <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Your Collection</h4></div>
                                   <div class="panel-body">
                                     <div class="list-group">
-                                      <a href="http://bootply.com/tagged/modal" class="list-group-item">Modal / Dialog</a>
-                                      <a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a>
-                                      <a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
+                                      <% current_user.shoes.each do |shoe| %>
+                                        <a href=# class="list-group-item"> <%=shoe.brand%> - <%=shoe.style_name%></a>
+                                      <% end %>
                                     </div>
                                   </div>
                               </div>
@@ -440,16 +446,6 @@ small.text-muted {
 
                           <!-- main col right -->
                           <div class="col-sm-7">
-
-                                <div class="well">
-                                   <form class="form">
-                                    <h4>Sign-up for our newsletter</h4>
-                                    <div class="input-group text-center">
-                                    <input type="text" class="form-control input-lg" placeholder="Enter your email address">
-                                      <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="button">OK</button></span>
-                                    </div>
-                                  </form>
-                                </div>
 
                                <div class="panel panel-default">
                                  <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
@@ -509,7 +505,7 @@ small.text-muted {
                               </div>
 
                           </div>
-                       </div><!--/row-->
+                       </div><!--/row -->
 
                         <div class="row">
                           <div class="col-sm-6">
@@ -547,20 +543,19 @@ small.text-muted {
   <div class="modal-content">
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			Update Status
+			Add Pair
       </div>
       <div class="modal-body">
-          <form class="form center-block">
+          <form action="/shoes/new" method=POST class="form center-block">
             <div class="form-group">
-              <textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+              <textarea class="form-control input-lg" name = "brand" autofocus="" placeholder="Shoe Name"></textarea>
+              <textarea class="form-control input-lg" name = "style_name" autofocus="" placeholder="Style/Model"></textarea>
+              <textarea class="form-control input-lg" name = "size" autofocus="" placeholder="Size"></textarea>
+              <textarea class="form-control input-lg" name = "color" autofocus="" placeholder="Color"></textarea>
             </div>
+            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
           </form>
       </div>
-      <div class="modal-footer">
-          <div>
-          <button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
-            <ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-		  </div>
       </div>
   </div>
   </div>
