@@ -8,12 +8,22 @@ class UserController < ApplicationController
     end
   end
 
+  get '/users/index' do
+    ReleaseScraper.scrape_release
+    if logged_in?
+      @all_shoes = Shoe.all
+      erb :'/users/index'
+    else
+      redirect to '/login'
+    end
+  end
+
   post '/signup' do
     if params[:name] != "" && params[:username] != "" && params[:password] != ""
      @new_user = User.new(:name => params[:name], :username => params[:username], :password => params[:password])
      @new_user.save
      session[:user_id] = @new_user.id
-     redirect to '/shoes'
+     redirect to '/users/index'
     else
      redirect to '/signup'
     end
@@ -21,7 +31,7 @@ class UserController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect to '/shoes'
+      redirect to '/users/index'
     else
       erb :'/users/log_in'
     end

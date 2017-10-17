@@ -6,19 +6,19 @@ class ReleaseScraper
   attr_accessor :image_urls, :new_releases, :listings
   #attr_accessor :name, :price, :availability, :url
   @new_releases = []
-  @image_urls =''
+  @image_url =''
 
   def self.new_releases
     @new_releases
   end
 
-  def self.image_urls
+  def self.image_url
     @image_url
   end
 
   def self.scrape_shoe(url)
     doc = Nokogiri::HTML(open(url))
-    @image_urls = doc.search('#res').search('img').attr('src').text
+    @image_url = doc.search('#res').search('img').attr('src').text
   end
 
   def self.scrape_release

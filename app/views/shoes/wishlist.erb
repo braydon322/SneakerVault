@@ -4,7 +4,7 @@
   * { box-sizing:border-box; }
 
 body {
-  
+
 	font-family: Helvetica;
 	background: #eee;
   -webkit-font-smoothing: antialiased;
@@ -340,7 +340,7 @@ footer img:focus , footer a:focus { outline: none; }
 </head>
 <body>
 
-<% current_user.shoes.each do |shoe| %>
+<% current_user.wishlist.each do |shoe| %>
 <form>
   <div id="contact"
   <h2> <%= shoe.brand %> <%= shoe.style_name %> - <%= shoe.color %></h2><br>
