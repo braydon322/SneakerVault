@@ -252,6 +252,7 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
 	padding-top:70px;
 }
 
+
 .box {
   	bottom: 0; /* increase for footer use */
     left: 0;
@@ -292,6 +293,9 @@ input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
    color:#fff;
 }
 
+#logged_in {
+  float: right;
+}
 #main {
    background-color:#e9eaed;
    padding-left:0;
@@ -515,34 +519,30 @@ small.text-muted {
                     <img src="/img/sneakervault.png" id="site-logo" width=200px;></img>
                   	</div>
                   	<nav class="collapse navbar-collapse" role="navigation">
-                    <form class="navbar-form navbar-left">
+                    <!-- <form class="navbar-form navbar-left">
                         <div class="input-group input-group-sm" style="max-width:360px;">
                           <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                           <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                           </div>
                         </div>
-                    </form>
+                    </form> -->
                     <ul class="nav navbar-nav">
+
                       <li>
-                        <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
-                      </li>
-                      <li>
-                        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Add Pair</a>
-                      </li>
-                      <li>
-                        <a href="#"><span class="badge">badge</span></a>
+                        <a href="#postModal" role="button" data-toggle="modal"><span class="badge">Add Pair</span></a>
                       </li>
                     </ul>
+
                     <ul class="nav navbar-nav navbar-right">
+
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %>  <i class="glyphicon glyphicon-user"></i></a>
                         <ul class="dropdown-menu">
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
-                          <li><a href="">More</a></li>
+                            <li><a href="">My Collection</a></li>
+                            <li><a href="">My Wishlist</a></li>
+                            <li><a href="/logout">Logout</a></li>
+
                         </ul>
                       </li>
                     </ul>
@@ -557,14 +557,14 @@ small.text-muted {
                       	<div class="row">
 
                          <!-- main col left -->
+
                          <div class="col-sm-5">
 
                               <div class="panel panel-default">
                                 <div class="panel-thumbnail"><img src="/assets/example/bg_5.jpg" class="img-responsive"></div>
                                 <div class="panel-body">
-                                  <p class="lead">Braydon Whitmarsh</p>
+                                  <p class="lead"> Welcome, <%= current_user.name %></p>
                                   <p>45 Followers, <%= current_user.shoes.size %> pair(s)</p>
-                                  <img src="img/profile.jpg" width="28px">
                                 </div>
                               </div>
 
@@ -582,26 +582,9 @@ small.text-muted {
                               </div>
 
                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Upcoming Releases</h4></div>
-                                  <div class="panel-body">
-                                      <ul id="rig">
-                                      <% ReleaseScraper.all.each do |shoe| %>
-                                                <li>
-                                                    <a class="rig-cell" href="<%= shoe[:page_link] %>">
-                                                        <img class="rig-img"src="<%= shoe[:url] %>">
-                                                        <span class="rig-overlay"></span>
-                                                        <span class="rig-text"><%= shoe[:shoe_name] %> - <%= shoe[:release_date] %></span>
-                                                    </a>
-                                                </li>
-                                      <% end %>
-                                      </ul>
-                                  </div>
-                              </div>
-
-                              <div class="panel panel-default">
-                                <div class="panel-heading"><h4>What Is Bootstrap?</h4></div>
+                                <div class="panel-heading"><h4>What Is Sneaker Vault?</h4></div>
                                	<div class="panel-body">
-                                	Bootstrap is front end frameworkto build custom web applications that are fast, responsive &amp; intuitive. It consist of CSS and HTML for typography, forms, buttons, tables, grids, and navigation along with custom-built jQuery plug-ins and support for responsive layouts. With dozens of reusable components for navigation, pagination, labels, alerts etc..                          </div>
+                                	Sneaker Vault is a web application, designed by sneakerheads, for sneakerheads. We want you to have one place to go for your sneaker fixr. We'd love to see this developed into a social platform, but now is not the time for that. Go ahead and add sneakers to either your collection or your wishlist.</div>
                               </div>
 
 
@@ -611,90 +594,43 @@ small.text-muted {
                           <!-- main col right -->
                           <div class="col-sm-7">
 
+                            <div class="panel panel-default">
+                               <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Upcoming Releases</h4></div>
+                                <div class="panel-body">
+                                    <ul id="rig">
+                                    <% ReleaseScraper.new_releases.each do |shoe| %>
+                                              <li>
+                                                  <a class="rig-cell" href="<%= shoe[:page_link] %>">
+                                                      <img class="rig-img"src="<%= shoe[:url] %>">
+                                                      <span class="rig-overlay"></span>
+                                                      <span class="rig-text"><%= shoe[:shoe_name] %> - <%= shoe[:release_date] %></span>
+                                                  </a>
+                                              </li>
+                                    <% end %>
+                                    </ul>
+                                </div>
+                            </div>
 
 
 
                                <div class="panel panel-default">
                                  <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4> Your Wishlist</h4></div>
                                   <div class="panel-body">
-                                    <a href=#>Link 1</a>
-                                    <a href=#>Link 1</a>
-                                    <a href=#>Link 1</a>
-                                    <a href=#>Link 1</a>
 
+                                      <div class="list-group">
 
-                                  </div>
-                               </div>
-
-                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
-                                  <div class="panel-body">
-                                    <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-                                    <div class="clearfix"></div>
-                                    <hr>
-
-                                    <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.</p>
-
-                                    <hr>
-                                    <form>
-                                    <div class="input-group">
-                                      <div class="input-group-btn">
-                                      <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
+                                        <% current_user.shoes.each do |shoe| %>
+                                          <a href= '/shoes/<%= shoe.id %>' role="button" class="list-group-item"><img width=50 src= "<%=shoe.url%>"> <%=shoe.brand%> - <%=shoe.style_name%></a>
+                                        <% end %>
                                       </div>
-                                      <input type="text" class="form-control" placeholder="Add a comment..">
                                     </div>
-                                    </form>
+
 
                                   </div>
                                </div>
-
-                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
-                                  <div class="panel-body">
-                                    <ul class="list-group">
-                                    <li class="list-group-item">Modals</li>
-                                    <li class="list-group-item">Sliders / Carousel</li>
-                                    <li class="list-group-item">Thumbnails</li>
-                                    </ul>
-                                  </div>
-                               </div>
-
-                               <div class="panel panel-default">
-                                <div class="panel-thumbnail"><img src="/assets/example/bg_4.jpg" class="img-responsive"></div>
-                                <div class="panel-body">
-                                  <p class="lead">Social Good</p>
-                                  <p>1,200 Followers, 83 Posts</p>
-
-                                  <p>
-                                    <img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                    <img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                    <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg" width="28px" height="28px">
-                                  </p>
-                                </div>
-                              </div>
 
                           </div>
                        </div><!--/row -->
-
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <a href="#">Twitter</a> <small class="text-muted">|</small> <a href="#">Facebook</a> <small class="text-muted">|</small> <a href="#">Google+</a>
-                          </div>
-                        </div>
-
-                        <div class="row" id="footer">
-                          <div class="col-sm-6">
-
-                          </div>
-                          <div class="col-sm-6">
-                            <p>
-                            <a href="#" class="pull-right">©Copyright 2013</a>
-                            </p>
-                          </div>
-                        </div>
-
-
-
 
                     </div><!-- /col-9 -->
                 </div><!-- /padding -->
