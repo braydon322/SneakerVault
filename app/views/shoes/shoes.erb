@@ -587,7 +587,7 @@ small.text-muted {
                                       <ul id="rig">
                                       <% ReleaseScraper.all.each do |shoe| %>
                                                 <li>
-                                                    <a class="rig-cell" href="#">
+                                                    <a class="rig-cell" href="<%= shoe[:page_link] %>">
                                                         <img class="rig-img"src="<%= shoe[:url] %>">
                                                         <span class="rig-overlay"></span>
                                                         <span class="rig-text"><%= shoe[:shoe_name] %> - <%= shoe[:release_date] %></span>
@@ -615,9 +615,12 @@ small.text-muted {
 
 
                                <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4> Upcoming Releases</h4></div>
+                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4> Your Wishlist</h4></div>
                                   <div class="panel-body">
-
+                                    <a href=#>Link 1</a>
+                                    <a href=#>Link 1</a>
+                                    <a href=#>Link 1</a>
+                                    <a href=#>Link 1</a>
 
 
                                   </div>

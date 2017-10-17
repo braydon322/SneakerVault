@@ -62,5 +62,6 @@ class ShoeController < ApplicationController
   get '/shoes/:id/delete' do
     @shoe = Shoe.find(params[:id])
     @shoe.delete
+    redirect to "/shoes"
   end
 end
