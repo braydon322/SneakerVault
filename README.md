@@ -4,18 +4,7 @@ Flatiron School - Sinatra Final Portfolio Project
 Sneaker Vault is a web application, designed by sneakerheads, for sneakerheads. We want you to have one place to go for your sneaker fix. We'd love to see this developed into a social platform, but now is not the time for that. Go ahead and add sneakers to your collection.
 
 1. Build an MVC Sinatra Application. 
-    Models:
-      1. User
-      2. Shoes
-      3. Scraper
-    Views:
-      1. User
-      2. Shoes
-    Controllers:
-      1. User_Controller
-      2. Shoe_Controller
-      3. Application_Controller
-      
+   
 2. Use ActiveRecord with Sinatra.
       1. User has_many Shoes
       2. Shoe belongs_to User
