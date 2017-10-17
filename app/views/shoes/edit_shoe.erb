@@ -165,12 +165,13 @@ fieldset {
     <h2> <%= @shoe.brand %> <%= @shoe.style_name %> - <%= @shoe.color %></h2><br>
       <img src="<%= @shoe.url %>"></img>
       <h1> Size <%= @shoe.size %> </h1><br>
-      <form action="/shoes/<%= @shoe.id %>/edit" method="POST">
+      <form action="/shoes/<%= @shoe.id %>" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="PATCH">
       <input type="text" placeholder= "Brand:" name="brand">
       <input type="text" placeholder= "Style/Colorway:"name="style_name">
       <input type="text" placeholder= "Size:" name="size">
       <input type="text" placeholder= "Color:" name="color"><br><br>
-      <button type="submit" value="Submit" id="submit">Update</button>
+      <button type="update" value="Update" id="update">Update</button>
     </form>
     </div>
   </div>

@@ -45,11 +45,22 @@ class ShoeController < ApplicationController
   end
 
   patch '/shoes/:id' do
+    @shoe = Shoe.find(params[:id])
+    if params[:brand] != "" && params[:style_name] != "" &&  params[:size] != "" &&  params[:color] != ""
+      @shoe.update(:brand => params[:brand], :style_name => params[:style_name], :size => params[:size], :color => params[:color])
+    end
+    @shoe_slug = "#{@shoe.brand} #{@shoe.style_name} #{@shoe.color}".downcase.gsub(' ','+')
+    url = "https://www.google.com/search?biw=1680&bih=976&tbm=isch&sa=1&q=" + @shoe_slug + "&oq=" + @shoe_slug + "&gs_l=psy-ab.3..0l10.4067.7152.0.7267.19.19.0.0.0.0.120.1489.17j2.19.0....0...1.1.64.psy-ab..0.19.1488...0i67k1.0.J04MymRcUzg"
+    ReleaseScraper.scrape_shoe(url)
+    @url = ReleaseScraper.url
+    @shoe.url = @url
+    @shoe.user_id = current_user.id
+    @shoe.save
+    redirect to "/shoes/#{@shoe.id}"
   end
 
   get '/shoes/:id/delete' do
     @shoe = Shoe.find(params[:id])
     @shoe.delete
-    redirect to '/shoes'
   end
 end
