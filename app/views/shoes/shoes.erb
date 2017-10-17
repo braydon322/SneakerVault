@@ -38,6 +38,16 @@ html, body {
    font-size:13px;
 }
 
+#new-releases {
+    width: 21%;
+    float: left;
+    display: inline;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-right: 2%;
+    margin-left: 2%;
+  }
+
 a.dropdown-toggle {
   padding-right: 10px;
 }
@@ -52,6 +62,163 @@ a:hover {
 
 hr {
   border-color:#dedede;
+}
+
+
+/* HIDE <input> */
+input.radio:empty { margin-left: -9999px; }
+
+/* CUSTOM LABEL */
+input.radio:empty ~ label {
+ position: relative;
+ float: left;
+ line-height: 2.5em;
+ text-indent: 3.25em;
+ margin-top: 2em;
+ cursor: pointer;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+/* Label, not hovered or checked */
+input.radio:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2.5em;
+	background: #D1D3D4;
+	border-radius: 3px 0 0 3px;
+}
+
+/* On Hover */
+input.radio:hover:not(:checked) ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #C2C2C2;
+}
+
+input.radio:hover:not(:checked) ~ label { color: #888; }
+
+/* Checked */
+input.radio:checked ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #9CE2AE;
+	background-color: #4DCB6D;
+}
+
+input.radio:checked ~ label { color: #777; }
+
+/* On Focus */
+input.radio:focus ~ label:before { box-shadow: 0 0 0 3px #999; }
+
+#rig {
+    max-width:60%;
+    margin:0 auto; /*center aligned*/
+    padding:0;
+    font-size:0; /* Remember to change it back to normal font size if have captions */
+    list-style:none;
+    background-color: white;
+}
+#rig li {
+    display: inline-block;
+    *display:inline;/*for IE6 - IE7*/
+    width:100%;
+    vertical-align:middle;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+/* The wrapper for each item */
+.rig-cell {
+    /*margin:12px;
+    box-shadow:0 0 6px rgba(0,0,0,0.3);*/
+    display:block;
+    position: relative;
+    overflow:hidden;
+}
+
+/* If have the image layer */
+.rig-img {
+    display:block;
+    width: 100%;
+    height: auto;
+    border:none;
+    transform:scale(1);
+    transition:all 1s;
+}
+
+#rig li:hover .rig-img {
+    transform:scale(1.05);
+}
+
+/* If have the overlay layer */
+.rig-overlay {
+    position: absolute;
+    display:block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background: #3DC0F1 url(img/link.png) no-repeat center 20%;
+    background-size:50px 50px;
+    opacity:0;
+    filter:alpha(opacity=0);/*For IE6 - IE8*/
+    transition:all 0.6s;
+}
+#rig li:hover .rig-overlay {
+    opacity:0.8;
+}
+
+/* If have captions */
+.rig-text {
+    display:block;
+    margin: 0 auto;
+    box-sizing:border-box;
+    position:absolute;
+    left:0;
+    width:100%;
+    text-align:center;
+    text-transform:capitalize;
+    font-size:10px;
+    font-weight:bold;
+    font-family: 'Oswald', sans-serif;
+    font-weight:normal!important;
+    top:25%;
+    color:white;
+    opacity:0;
+    filter:alpha(opacity=0);/*For older IE*/
+    transform:translateY(-20px);
+    transition:all .3s;
+}
+#rig li:hover .rig-text {
+    transform:translateY(0px);
+    opacity:0.9;
+}
+
+@media (max-width: 9000px) {
+    #rig li {
+        width:25%;
+    }
+}
+
+@media (max-width: 700px) {
+    #rig li {
+        width:33.33%;
+    }
+}
+
+@media (max-width: 550px) {
+    #rig li {
+        width:50%;
+    }
 }
 
 .wrapper, .row {
@@ -403,34 +570,31 @@ small.text-muted {
 
 
                               <div class="panel panel-default">
-                                <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Your Collection</h4></div>
+                                <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Your Sneaker Collection</h4></div>
                                   <div class="panel-body">
                                     <div class="list-group">
+
                                       <% current_user.shoes.each do |shoe| %>
-                                        <a href=# class="list-group-item"> <%=shoe.brand%> - <%=shoe.style_name%></a>
+                                        <a href= '/shoes/<%= shoe.id %>' role="button" class="list-group-item"><img width=50 src= "<%=shoe.url%>"> <%=shoe.brand%> - <%=shoe.style_name%></a>
                                       <% end %>
                                     </div>
                                   </div>
                               </div>
 
-                              <div class="well">
-                                   <form class="form-horizontal" role="form">
-                                    <h4>What's New</h4>
-                                     <div class="form-group" style="padding:14px;">
-                                      <textarea class="form-control" placeholder="Update your status"></textarea>
-                                    </div>
-                                    <button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-                                  </form>
-                              </div>
-
                               <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>More Templates</h4></div>
+                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Upcoming Releases</h4></div>
                                   <div class="panel-body">
-                                    <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Free @Bootply</a>
-                                    <div class="clearfix"></div>
-                                    There a load of new free Bootstrap 3 ready templates at Bootply. All of these templates are free and don't require extensive customization to the Bootstrap baseline.
-                                    <hr>
-                                    <ul class="list-unstyled"><li><a href="http://www.bootply.com/templates">Dashboard</a></li><li><a href="http://www.bootply.com/templates">Darkside</a></li><li><a href="http://www.bootply.com/templates">Greenfield</a></li></ul>
+                                      <ul id="rig">
+                                      <% ReleaseScraper.all.each do |shoe| %>
+                                                <li>
+                                                    <a class="rig-cell" href="#">
+                                                        <img class="rig-img"src="<%= shoe[:url] %>">
+                                                        <span class="rig-overlay"></span>
+                                                        <span class="rig-text"><%= shoe[:shoe_name] %> - <%= shoe[:release_date] %></span>
+                                                    </a>
+                                                </li>
+                                      <% end %>
+                                      </ul>
                                   </div>
                               </div>
 
@@ -447,13 +611,15 @@ small.text-muted {
                           <!-- main col right -->
                           <div class="col-sm-7">
 
+
+
+
                                <div class="panel panel-default">
-                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootply Editor &amp; Code Library</h4></div>
+                                 <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4> Upcoming Releases</h4></div>
                                   <div class="panel-body">
-                                    <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
-                                    <div class="clearfix"></div>
-                                    <hr>
-                                    Design, build, test, and prototype using Bootstrap in real-time from your Web browser. Bootply combines the power of hand-coded HTML, CSS and JavaScript with the benefits of responsive design using Bootstrap. Find and showcase Bootstrap-ready snippets in the 100% free Bootply.com code repository.
+
+
+
                                   </div>
                                </div>
 
@@ -545,6 +711,48 @@ small.text-muted {
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			Add Pair
       </div>
+      <div class="modal-body">
+          <form action="/shoes/new" method=POST class="form center-block">
+            <div class="form-group">
+              <textarea class="form-control input-lg" name = "brand" autofocus="" placeholder="Shoe Name"></textarea>
+              <textarea class="form-control input-lg" name = "style_name" autofocus="" placeholder="Style/Model"></textarea>
+              <textarea class="form-control input-lg" name = "size" autofocus="" placeholder="Size"></textarea>
+              <textarea class="form-control input-lg" name = "color" autofocus="" placeholder="Color"></textarea>
+            </div>
+            <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit">
+          </form>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+<!--post modal-->
+<div id="EditPostModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			Edit Pair
+      </div>
+
+      <article>
+  <h1>Decisions, Decisions, Decisions</h1>
+  <section>
+    <input type="radio" name="radio" id="radio1" class="radio" checked/>
+    <label for="radio1">Pick Me</label>
+  </section>
+  <section>
+    <input type="radio" name="radio" id="radio2" class="radio"/>
+    <label for="radio2">Ooh ooooh ooh oooh, pick me!</label>
+  </section>
+  <section>
+    <input type="radio" name="radio" id="radio3" class="radio"/>
+    <label for="radio3">No no no no NO! Pick me.</label>
+  </section>
+</article>
+
+
       <div class="modal-body">
           <form action="/shoes/new" method=POST class="form center-block">
             <div class="form-group">
